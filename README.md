@@ -2,7 +2,7 @@
 
 This project is a frontend for an e-commerce website, developed using modern web technologies. It provides an interactive platform for users to browse and purchase products, while also offering a management dashboard for administrators to handle products, users, and orders. The project is built with a focus on a smooth and intuitive user experience, with added functionalities for searching, filtering, and managing products.
 
-***Deadline: 14/11/2024 ***
+***Deadline: 14/11/2024***
 
 ### Level 1: Basic Requirements
 
