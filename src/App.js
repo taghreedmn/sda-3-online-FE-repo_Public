@@ -2,6 +2,8 @@ import "./App.css";
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from './pages/HomePage';
+import Login from './components/userInfo/LogIn';
+import Register from './components/userInfo/SignUp';
 import LayOut from './components/layout/LayOut';
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -46,6 +48,14 @@ function App() {
         {
           path: "/",
           element: <Home />,
+        },
+        {
+          path: "/Register",
+           element: < Register />,
+        },
+        {
+          path: "/Login",
+          element: < Login />,
         },
         
       ],

@@ -1,19 +1,11 @@
 
 .footer {
     background-color: #222;
-    /* Dark background */
     color: #fff;
-    /* White text */
-    /* padding: 1px 0; */
-    /* Reduced padding */
     text-align: center;
-    /* Centered text */
     position: fixed;
-    /* Fixed position at the bottom */
-    bottom: 0;
-    /* Align to bottom */
+    bottom:0;
     width: 100%;
-    /* Full width */
 }
 
 .footer-content {
@@ -21,19 +13,10 @@
     /* Flexbox layout */
     justify-content: space-between;
     /* Space between items */
-    max-width: 1200px;
-    /* Max width */
+    max-width: 1100px;
     margin: 0 auto;
-    /* Centering */
-    padding: 0 20px;
-    /* Side padding */
 }
 
-.footer-links,
-.footer-socials {
-    margin: 10px;
-    /* Margin between sections */
-}
 
 .footer-links ul {
     list-style: none;
@@ -61,7 +44,7 @@ a:hover {
 }
 
 .footer-bottom {
-    margin-top: 10px;
+    margin-top: 0px;
     /* Space above copyright */
 }
 
