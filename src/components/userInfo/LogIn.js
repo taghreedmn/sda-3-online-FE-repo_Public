@@ -28,13 +28,13 @@ export default function LogIn() {
               <input
                   type="password"
                   name="password"
-                  placeholder="Username"
-                  value={formData.username}
+                  placeholder="Password"
+                  value={formData.password}
                   onChange={handleChange}
                   required
               />
               <button type='Submit' >Login</button>
-              
+
           </form>
     </div>
   )
