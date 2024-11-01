@@ -7,11 +7,12 @@ import Register from './pages/RegisterPage';
 import LayOut from './components/layout/LayOut';
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Games from "./pages/GamesPage";
 
 
 
 function App() {
-  const url = "https://mocki.io/v1/31eaa9af-edbc-4121-9163-0a1f671adb02";
+  const url = "http://localhost:5125/api/v1/VideoGamesInfo";
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [productList, setProductList] = useState([]);
@@ -56,6 +57,10 @@ function App() {
         {
           path: "/Login",
           element: < Login />,
+        },
+        {
+          path: "/Games",
+          element: < Games products={productList} />,
         },
         
       ],
