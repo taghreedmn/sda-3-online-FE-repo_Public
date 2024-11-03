@@ -1,34 +1,47 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
-import './Games.css';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+import "./Games.css";
 
-export default function Products(prop) {
-    //onClick={handleClick}
+export default function Products({ products }) {
+    const [searchQuery, setSearchQuery] = useState("");
     const navigate = useNavigate();
 
-
-    const handleClick = () => {
-        navigate("/ProductDetail", {
+    const handleClick = (product) => {
+        navigate("/GamesDetail", {
             state: {
-                product: prop.products
-            }
+                gameId: product.videoGameInfoId,
+            },
         });
     };
-    console.log('http://localhost:5125/images/Games/{videoGamesInfoGuidHelper}/{videoGamesInfoGuidHelper}.jpg');
+
+    // Filter products based on search term
+    const filteredProducts = products.filter((product) =>
+        product.gameName.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
     return (
-        <div className="product-list">
-            <div className="product-preview">
-                {prop.products.map((product) => {
-                    return (
-                        <button className="product-card" onClick={handleClick}>
-                            <img src={product.gamePicturePath} alt={product.gameName} className="product-image" />
-                            <p >{product.gameName}</p>
-                            <div>{product.price}</div>
-                        </button>
-                    );
-                })}
+        <div className="products-container">
+            <input
+                type="text"
+                placeholder="Search games by name..."
+                className="search-input"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            <div className="product-list">
+                {filteredProducts.map((product) => (
+                    <button key={product.videoGameInfoId} className="product-card" onClick={() => handleClick(product)}>
+                        <img src={product.gamePicturePath} alt={product.gameName} className="product-image" />
+                        <p>{product.gameName}</p>
+                        <div className="rating">
+                            <FontAwesomeIcon icon={faStar} className="star-icon" />
+                            <span>{product.totalRating}</span>
+                        </div>
+                    </button>
+                ))}
             </div>
-            
         </div>
-    )
+    );
 }

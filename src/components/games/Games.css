@@ -1,25 +1,39 @@
 .product-list{
     padding: 110px;
-    
+    display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+}
+.products-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .product-preview {
     display: flex;
-    gap: 20px;
+    gap: 40px;
     flex-wrap: wrap;
     justify-content: center;
 }
 
 .product-card {
-    width: 200px;
+    width: 300px;
     padding: 10px;
     text-align: center;
-    background-color: #1e1e1e;
     border: 1px solid #00d1ff;
     border-radius: 8px;
     transition: transform 0.3s;
     text-decoration: none;
     color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #2e2e2e;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    position: relative;
 }
 
 .product-card:hover {
@@ -30,7 +44,104 @@
 
 .product-image {
     width: 100%;
-    height: auto;
+    height: 60%;
     border-radius: 5px;
-    margin-bottom: 10px;
+    margin-bottom: 50px;
+}
+.rating {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 1em;
+    color: #ffd700;
+}
+
+.star-icon {
+    margin-right: 5px;
+    font-size: 1.2em;
+}
+.game-detail-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 800px;
+    /* Limit the width for better readability */
+    margin: 20px auto;
+    padding: 20px;
+    background: #1a1a1a;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
+}
+
+.game-detail-container h2 {
+    color: #00ffcc;
+    text-shadow: 0 0 10px rgba(0, 255, 204, 0.7);
+    margin-bottom: 20px;
+}
+
+.game-detail-container img {
+    width: 100%;
+    /* Make image responsive */
+    max-width: 400px;
+    /* Limit maximum width */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 204, 153, 0.7);
+    margin-bottom: 20px;
+}
+
+.game-detail-container p {
+    color: #00cc99;
+    font-size: 1rem;
+    margin: 10px 0;
+    line-height: 1.5;
+}
+
+.game-detail-container strong {
+    color: #00ffcc;
+}
+
+.game-detail-container div {
+    width: 100%;
+    /* Full width for all items */
+    padding: 10px;
+    border: 1px solid #00cc99;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    background: #262626;
+    transition: background 0.3s ease;
+}
+
+.game-detail-container div:hover {
+    background: #333;
+    /* Darker on hover */
+    box-shadow: 0 0 15px rgba(0, 204, 153, 0.5);
+}
+.search-input {
+    width: 100%;
+    max-width: 400px;
+    padding: 12px;
+    margin-top: 150px;
+    margin-right: 850px;
+    font-size: 1rem;
+    border-radius: 20px;
+    border: 2px solid #00d1ff;
+    outline: none;
+    background-color: #1a1a1a;
+    color: #00d1ff;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 8px rgb(0, 209, 255);
+}
+
+.search-input::placeholder {
+    color: #00d1ff;
+    opacity: 0.8;
+}
+
+.search-input:focus {
+    border-color: #00cc99;
+    box-shadow: 0 0 12px rgba(0, 204, 153, 0.7);
 }

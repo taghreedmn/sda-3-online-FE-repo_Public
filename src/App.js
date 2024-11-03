@@ -5,6 +5,7 @@ import Home from './pages/HomePage';
 import Login from './components/userInfo/LogIn';
 import Register from './pages/RegisterPage';
 import LayOut from './components/layout/LayOut';
+import GameDetail from './components/games/GameDetail'
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Games from "./pages/GamesPage";
@@ -12,11 +13,10 @@ import Games from "./pages/GamesPage";
 
 
 function App() {
-  const url = "http://localhost:5125/api/v1/VideoGamesInfo";
+  const url = "http://localhost:5125/api/v1/VideoGamesInfo/";
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [productList, setProductList] = useState([]);
-  const allProducts = productList;
+  const [productList, setProductList] = useState({});
 
   function getData() {
     axios.get(url)
@@ -61,6 +61,10 @@ function App() {
         {
           path: "/Games",
           element: < Games products={productList} />,
+        },
+        {
+          path: "/GamesDetail",
+          element: < GameDetail/>,
         },
         
       ],
