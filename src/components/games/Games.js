@@ -35,12 +35,14 @@ export default function Products({ products }) {
                     <button key={product.videoGameInfoId} className="product-card" onClick={() => handleClick(product)}>
                         <img src={product.gamePicturePath} alt={product.gameName} className="product-image" />
                         <p>{product.gameName}</p>
+                        <p><strong>Price:</strong> {product.videoGameVersions[0].price} R.S</p>
                         <div className="rating">
                             <FontAwesomeIcon icon={faStar} className="star-icon" />
                             <span>{product.totalRating}</span>
                         </div>
                     </button>
                 ))}
+                
             </div>
         </div>
     );

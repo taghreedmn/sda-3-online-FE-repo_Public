@@ -1,6 +1,7 @@
 // src/components/GamesDetail.js
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { addToCart } from '../cart/CartUtils';
 import axios from 'axios';
 import './Games.css';
 
@@ -10,6 +11,7 @@ export default function GamesDetail() {
     const [game, setGame] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    
 
     function fetchGameDetail() {
         axios
@@ -28,6 +30,11 @@ export default function GamesDetail() {
         fetchGameDetail();
     }, [gameId]);
 
+    const handleAddToCart = (product) => {
+        addToCart(product);
+        alert(`${product.gameName} has been added to your cart!`);
+    };
+
     if (loading) {
         return <div>Loading...</div>;
     }
@@ -38,7 +45,7 @@ export default function GamesDetail() {
     console.log(game)
     return (
         <div className="game-detail-container">
-            {game.map((gameDetail,index)=>(
+            {game.map((gameDetail)=>(
                 <div>
                     <h2>{gameDetail.gameName}</h2>
                     <img src={gameDetail.gamePicturePath} alt={gameDetail.gameName} className="game-image" />
@@ -46,6 +53,7 @@ export default function GamesDetail() {
                     <p><strong>Price:</strong> {gameDetail.videoGameVersions[0].price} R.S</p>
                     <p><strong>Rating:</strong> {gameDetail.totalRating}</p>
                     <p><strong>Release Date:</strong> {gameDetail.yearOfRelease}</p>
+                    <button onClick={() => handleAddToCart(gameDetail)} className="add-to-cart-button">Add to Cart</button>
                 </div>
             ))}
             

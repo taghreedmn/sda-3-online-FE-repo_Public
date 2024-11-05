@@ -4,8 +4,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from './pages/HomePage';
 import Login from './components/userInfo/LogIn';
 import Register from './pages/RegisterPage';
+import Cart from './components/cart/Cart';
 import LayOut from './components/layout/LayOut';
-import GameDetail from './components/games/GameDetail'
+import GameDetail from './components/games/GameDetail';
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Games from "./pages/GamesPage";
@@ -17,6 +18,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [productList, setProductList] = useState({});
+
 
   function getData() {
     axios.get(url)
@@ -65,6 +67,10 @@ function App() {
         {
           path: "/GamesDetail",
           element: < GameDetail/>,
+        },
+        {
+          path: "/Cart",
+          element: < Cart />,
         },
         
       ],

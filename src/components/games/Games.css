@@ -69,8 +69,8 @@
     align-items: center;
     max-width: 800px;
     /* Limit the width for better readability */
-    margin: 20px auto;
-    padding: 20px;
+    margin: 50px auto;
+    padding: 50px;
     background: #1a1a1a;
     border-radius: 8px;
     box-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
@@ -85,7 +85,7 @@
 .game-detail-container img {
     width: 100%;
     /* Make image responsive */
-    max-width: 400px;
+    max-width: 450px;
     /* Limit maximum width */
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 204, 153, 0.7);
@@ -106,10 +106,10 @@
 .game-detail-container div {
     width: 100%;
     /* Full width for all items */
-    padding: 10px;
+    padding: 30px;
     border: 1px solid #00cc99;
     border-radius: 5px;
-    margin-bottom: 15px;
+    margin-bottom: 50px;
     background: #262626;
     transition: background 0.3s ease;
 }
@@ -145,3 +145,28 @@
     border-color: #00cc99;
     box-shadow: 0 0 12px rgba(0, 204, 153, 0.7);
 }
+
+.card-content:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+/* Styling for the Add to Cart button */
+.add-to-cart-button {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #28a745;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.add-to-cart-button:hover {
+    background-color: #218838;
+}
+

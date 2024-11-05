@@ -1,11 +1,28 @@
 // src/components/NavBar.js
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { FaUserPlus, FaSignInAlt, FaShoppingCart } from "react-icons/fa";
+import { FaUserPlus, FaShoppingCart } from "react-icons/fa";
+import { getTotalItemCount } from '../cart/CartUtils';
 import "../navbar/NavBar.css";
 import logo from '../../image/logo.png';
 
 const NavBar = () => {
+  const [itemCount, setItemCount] = useState(getTotalItemCount());
+
+  useEffect(() => {
+    // Update count when localStorage changes
+    const handleStorageChange = () => {
+      setItemCount(getTotalItemCount());
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+
+    // Cleanup listener on component unmount
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
+
   return (
     <nav className="navbar">
       <Link to="/" className="navbar-logo">
@@ -17,9 +34,13 @@ const NavBar = () => {
         <Link to="/dashboard">Dashboard</Link>
       </div>
       <div className="navbar-icons">
-        <Link to="/cart" className="navbar-icon">
+        <Link to="/Cart" className="navbar-icon">
           <FaShoppingCart />
+          <div>
+            {itemCount > 0 && <span className="cart-badge">{itemCount}</span>}
+          </div>
         </Link>
+        
         <Link to="/register" className="navbar-icon">
           <FaUserPlus />
         </Link>
