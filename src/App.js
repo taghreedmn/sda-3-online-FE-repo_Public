@@ -20,27 +20,32 @@ function App() {
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(1000);
   const [productList, setProductList] = useState({
-    game: [],
+    products: [], 
     totalCount: 0,
   });
- 
+
   const handleChange = (event, value) => {
     setPage(value);
   };
-  let limit = 4;
+  let limit = 6;
 
   let offset = (page - 1) * limit;
 
-  let url = `http://localhost:5125/api/v1/VideoGamesInfo?MinPrice=${minPrice}&MaxPrice=${maxPrice}&Limit=${limit}&Offset=${offset}`;
+  let url = `http://localhost:5125/api/v1/VideoGamesInfo/Detailed?MinPrice=${minPrice}&MaxPrice=${maxPrice}&Limit=${limit}&Offset=${offset}`;
 
   function getData() {
     axios.get(url)
       .then((response) => {
-        setProductList(response.data);
+        setProductList({
+          products: response.data.videoGamesInfos || [],
+          totalCount: response.data.totalCount || 0
+        });
         setLoading(false);
+        console.log('API response:', response.data);
+        console.log('Updated productList:', productList);
       })
       .catch((error) => {
-        console.log(error)
+        console.error("Failed to fetch data:", error);
         setError("Fail to fetch data");
         setLoading(false);
       });
@@ -48,7 +53,7 @@ function App() {
   // getData();
   useEffect(() => {
     getData();
-  }, [page, limit, minPrice, maxPrice]);
+  }, [offset, limit, minPrice, maxPrice,]);
 
   if (loading === true) {
     return <div>Please wait a second </div>
@@ -75,7 +80,10 @@ function App() {
         },
         {
           path: "/Games",
-          element: < Games products={productList} totalCount={productList.totalCount} page ={page} handleChange ={handleChange}/>,
+          element: < Games products={productList.products} totalCount={productList.totalCount} 
+                          page={page} handleChange={handleChange} 
+                          setMinPrice={setMinPrice} setMaxPrice={setMaxPrice} 
+                          minPrice = {minPrice} maxPrice ={maxPrice}/>,
         },
         {
           path: "/GamesDetail",

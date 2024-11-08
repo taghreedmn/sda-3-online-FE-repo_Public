@@ -1,4 +1,3 @@
-// src/components/GamesDetail.js
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { addToCart } from '../cart/CartUtils';
@@ -11,7 +10,6 @@ export default function GamesDetail() {
     const [game, setGame] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    
 
     function fetchGameDetail() {
         axios
@@ -42,21 +40,20 @@ export default function GamesDetail() {
     if (error) {
         return <div>{error}</div>;
     }
-    console.log(game)
+
+    if (!game) {
+        return <div>No game details available.</div>;
+    }
+
     return (
         <div className="game-detail-container">
-            {game.map((gameDetail)=>(
-                <div>
-                    <h2>{gameDetail.gameName}</h2>
-                    <img src={gameDetail.gamePicturePath} alt={gameDetail.gameName} className="game-image" />
-                    <p><strong>Description:</strong> {gameDetail.description}</p>
-                    <p><strong>Price:</strong> {gameDetail.videoGameVersions[0].price} R.S</p>
-                    <p><strong>Rating:</strong> {gameDetail.totalRating}</p>
-                    <p><strong>Release Date:</strong> {gameDetail.yearOfRelease}</p>
-                    <button onClick={() => handleAddToCart(gameDetail)} className="add-to-cart-button">Add to Cart</button>
-                </div>
-            ))}
-            
+            <h2>{game.gameName}</h2>
+            <img src={game.gamePicturePath} alt={game.gameName} className="game-image" />
+            <p><strong>Description:</strong> {game.description}</p>
+            <p><strong>Price:</strong> {game.videoGameVersions[0].price} R.S</p>
+            <p><strong>Rating:</strong> {game.totalRating}</p>
+            <p><strong>Release Date:</strong> {game.yearOfRelease}</p>
+            <button onClick={() => handleAddToCart(game)} className="add-to-cart-button">Add to Cart</button>
         </div>
     );
 }
