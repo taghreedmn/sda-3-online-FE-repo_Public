@@ -3,8 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import "./Games.css";
+import GamePagination from "./GamePagination";
 
-export default function Products({ products }) {
+export default function Products(prop) {
+    const { products, totalCount, page , handleChange } = prop;
     const [searchQuery, setSearchQuery] = useState("");
     const navigate = useNavigate();
 
@@ -44,6 +46,8 @@ export default function Products({ products }) {
                 ))}
                 
             </div>
+            <GamePagination totalCount={totalCount} page={page} handleChange={handleChange} />
         </div>
+        
     );
 }

@@ -14,11 +14,24 @@ import Games from "./pages/GamesPage";
 
 
 function App() {
-  const url = "http://localhost:5125/api/v1/VideoGamesInfo/";
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [productList, setProductList] = useState({});
+  const [page, setPage] = useState(1);
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(1000);
+  const [productList, setProductList] = useState({
+    game: [],
+    totalCount: 0,
+  });
+ 
+  const handleChange = (event, value) => {
+    setPage(value);
+  };
+  let limit = 4;
 
+  let offset = (page - 1) * limit;
+
+  let url = `http://localhost:5125/api/v1/VideoGamesInfo?MinPrice=${minPrice}&MaxPrice=${maxPrice}&Limit=${limit}&Offset=${offset}`;
 
   function getData() {
     axios.get(url)
@@ -35,7 +48,7 @@ function App() {
   // getData();
   useEffect(() => {
     getData();
-  }, []);
+  }, [page, limit, minPrice, maxPrice]);
 
   if (loading === true) {
     return <div>Please wait a second </div>
@@ -62,7 +75,7 @@ function App() {
         },
         {
           path: "/Games",
-          element: < Games products={productList} />,
+          element: < Games products={productList} totalCount={productList.totalCount} page ={page} handleChange ={handleChange}/>,
         },
         {
           path: "/GamesDetail",
