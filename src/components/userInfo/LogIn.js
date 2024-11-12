@@ -1,20 +1,25 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react';
 import './SignForm.css';
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import swal from 'sweetalert';
+import { jwtDecode } from 'jwt-decode';
 
-export default function LogIn() {
+export default function LogIn({ getUserData, getAdminData }) {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         email: "",
         password: ""
     });
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value })
-    };
-    const handleSubmit = (e) => {
-        const logUrl = "http://localhost:5125/api/v1/Person/signIn";
 
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        const logUrl = "http://localhost:5125/api/v1/Person/signIn";
         const dataToSend = {
             personEmail: formData.email,
             personPassword: formData.password,
@@ -22,53 +27,61 @@ export default function LogIn() {
 
         axios.post(logUrl, dataToSend)
             .then((res) => {
-                console.log(res, "response from post")
                 if (res.status === 200) {
-                    navigate("/");
+                    localStorage.setItem("token", res.data);
+
+                    // Decode token to get user role
+                    const decodedToken = jwtDecode(res.data);
+                    const userRole = decodedToken.role;
+
+                    // Check role and navigate accordingly
+                    if (userRole === "SystemAdmin") {
+                        getAdminData();
+                        swal({ text: "Welcome Admin", icon: "success", timer: 1500, button: false });
+                        navigate('/AdminProfile');
+                    } else {
+                        getUserData();
+                        swal({ text: "You are in", icon: "success", timer: 1500, button: false });
+                        navigate('/Profile');
+                    }
                 }
             })
             .catch((err) => {
-                console.log(err)
-                if (err === 400) {
-
-                    if (err.response.data.personEmail) {
-                        alert(err.response.data.personEmail[0]);
-                        return;
+                console.error("Login error:", err);
+                if (err.response && err.response.status === 400) {
+                    const errorData = err.response.data;
+                    if (errorData.personEmail) {
+                        alert(errorData.personEmail[0]);
                     }
-                    if (err.response.data.personPassword) {
-                        alert(err.response.data.personPassword[0]);
-                        return;
+                    if (errorData.personPassword) {
+                        alert(errorData.personPassword[0]);
                     }
-
-
                 }
             });
-        e.preventDefault();
-        console.log("Login Data: ", formData)
     };
-  return (
-      <div className='sign-container'>
-          <h2>Login</h2>
-          <form >
-              <input
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-              />
-              <input
-                  type="password"
-                  name="password"
-                  placeholder="Password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  required
-              />
-              <button type='Submit' onClick={handleSubmit}>Login</button>
 
-          </form>
-    </div>
-  )
+    return (
+        <div className='sign-container'>
+            <h2>Login</h2>
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                />
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    required
+                />
+                <button type='submit'>Login</button>
+            </form>
+        </div>
+    );
 }

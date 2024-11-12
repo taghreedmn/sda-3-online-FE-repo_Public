@@ -6,10 +6,14 @@ import Login from './components/userInfo/LogIn';
 import Register from './pages/RegisterPage';
 import Cart from './components/cart/Cart';
 import LayOut from './components/layout/LayOut';
+import AdminProfile from './components/userInfo/AdminProfile';
 import GameDetail from './components/games/GameDetail';
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Games from "./pages/GamesPage";
+import UserProfile from "./components/userInfo/UserProfile";
+import ProtectedRoute from "./components/userInfo/ProtectedRoute";
+import Dashboard from "./components/dashboard/Dashboard";
 
 
 
@@ -18,6 +22,9 @@ function App() {
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
   const [minPrice, setMinPrice] = useState(0);
+  const [userData, setUserData] = useState(null);
+  const [adminData, setAdminData] = useState(null);
+  const [isUserDataLoading, setIsUserDataLoading] = useState(true);
   const [maxPrice, setMaxPrice] = useState(1000);
   const [productList, setProductList] = useState({
     products: [], 
@@ -55,12 +62,64 @@ function App() {
     getData();
   }, [offset, limit, minPrice, maxPrice,]);
 
+  //http://localhost:5125/api/v1/SystemAdmin/Profile
+
+   function getAdminData() {
+    setIsUserDataLoading(true);
+    const token = localStorage.getItem("token");
+    axios
+      .get("http://localhost:5125/api/v1/SystemAdmin/Profile", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        setAdminData(res.data);
+        setIsUserDataLoading(false);
+      })
+      .catch((err) => {
+        setIsUserDataLoading(false);
+        console.log(err);
+      });
+  }
+
+  useEffect(() => {
+    getAdminData();
+  }, []);
+
+  function getUserData() {
+    setIsUserDataLoading(true);
+    const token = localStorage.getItem("token");
+    axios
+      .get("http://localhost:5125/api/v1/Customer/Profile", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        setUserData(res.data);
+        setIsUserDataLoading(false);
+      })
+      .catch((err) => {
+        setIsUserDataLoading(false);
+        console.log(err);
+      });
+  }
+
+  useEffect(() => {
+    getUserData();
+  }, []);
+
+  let isAuthenticated = userData ? true : false; 
+  let isAdmin = adminData ? true : false; 
+
   if (loading === true) {
     return <div>Please wait a second </div>
   }
   if (error) {
     return <div> {error} </div>
   }
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -76,7 +135,7 @@ function App() {
         }, 
         {
           path: "/Login",
-          element: < Login />,
+          element: < Login getUserData={getUserData} getAdminData={getAdminData} isAdmin={isAdmin} isAuthenticated={isAuthenticated} />,
         },
         {
           path: "/Games",
@@ -92,6 +151,36 @@ function App() {
         {
           path: "/Cart",
           element: < Cart />,
+        },
+        {
+          path: "/Profile",
+          element:
+            <ProtectedRoute 
+            isUserDataLoading={isUserDataLoading}
+            isAuthenticated={isAuthenticated}
+            isAdmin={isAdmin}
+              element={< UserProfile userData={userData} setUserData={setUserData} AdminData = {adminData} setAdminData ={setAdminData}/>} />,
+        },
+        {
+          path: "/AdminProfile",
+          element:
+            <ProtectedRoute
+              isUserDataLoading={isUserDataLoading}
+              isAuthenticated={isAuthenticated}
+              isAdmin={isAdmin}
+              shouldCheckAdmin= {true}
+              element={< AdminProfile  AdminData={adminData} setAdminData={setAdminData} />} />,
+        },
+        {
+          path: "/dashboard",
+          element:
+            <ProtectedRoute
+              isUserDataLoading={isUserDataLoading}
+              isAdmin={isAdmin}
+              shouldCheckAdmin={true}
+              adminData={adminData}
+              element={<Dashboard />}
+           />,
         },
         
       ],

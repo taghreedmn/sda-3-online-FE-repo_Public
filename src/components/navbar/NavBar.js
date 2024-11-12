@@ -36,9 +36,7 @@ const NavBar = () => {
       <div className="navbar-icons">
         <Link to="/Cart" className="navbar-icon">
           <FaShoppingCart />
-          <div>
             {itemCount > 0 && <span className="cart-badge">{itemCount}</span>}
-          </div>
         </Link>
         
         <Link to="/register" className="navbar-icon">

@@ -22,7 +22,7 @@ export default function SignUp() {
             personName: formData.username,
             personEmail: formData.email,
             personPassword: formData.password,
-            personPhone: `+${formData.phone}`, // Assuming the phone should include the '+' symbol
+            PersonPhoneNumber: formData.phone, // Assuming the phone should include the '+' symbol
             profilePicturePath: "", // If not provided, set to empty string
             age: parseInt(formData.age, 10),
         };
@@ -84,7 +84,7 @@ export default function SignUp() {
             <input 
                 type="tel" 
                 name="phone" 
-                placeholder="966555555555" 
+                placeholder="+966555555555" 
                 value={formData.phone} 
                 onChange={handleChange}
                 required
@@ -93,6 +93,7 @@ export default function SignUp() {
                 type="number"  
                 name="age" 
                 min="0" max="120"
+                placeholder='Age'
                 value={formData.age}
                 onChange={handleChange}
                 required
