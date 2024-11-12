@@ -159,14 +159,13 @@ function App() {
             isUserDataLoading={isUserDataLoading}
             isAuthenticated={isAuthenticated}
             isAdmin={isAdmin}
-              element={< UserProfile userData={userData} setUserData={setUserData} AdminData = {adminData} setAdminData ={setAdminData}/>} />,
+              element={< UserProfile userData={userData} setUserData={setUserData} />} />,
         },
         {
           path: "/AdminProfile",
           element:
             <ProtectedRoute
               isUserDataLoading={isUserDataLoading}
-              isAuthenticated={isAuthenticated}
               isAdmin={isAdmin}
               shouldCheckAdmin= {true}
               element={< AdminProfile  AdminData={adminData} setAdminData={setAdminData} />} />,
@@ -178,7 +177,6 @@ function App() {
               isUserDataLoading={isUserDataLoading}
               isAdmin={isAdmin}
               shouldCheckAdmin={true}
-              adminData={adminData}
               element={<Dashboard />}
            />,
         },

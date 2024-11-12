@@ -32,7 +32,9 @@ export default function LogIn({ getUserData, getAdminData }) {
 
                     // Decode token to get user role
                     const decodedToken = jwtDecode(res.data);
+                    console.log(decodedToken, "decodeToken")
                     const userRole = decodedToken.role;
+                    const userName = decodedToken.PersonName;
 
                     // Check role and navigate accordingly
                     if (userRole === "SystemAdmin") {
