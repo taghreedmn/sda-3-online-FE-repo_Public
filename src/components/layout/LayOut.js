@@ -5,10 +5,10 @@ import NavBar from '../navbar/NavBar';
 import { Outlet } from "react-router-dom";
 
 export default function LayOut(prop) {
-  const { isAdmin } = prop;
+  const { isAdmin, isAuthenticated, userData, setUserData } = prop;
   return (
     <div>
-      <NavBar isAdmin={isAdmin} />
+      <NavBar isAdmin={isAdmin} isAuthenticated={isAuthenticated} userData={userData} setUserData={setUserData} />
         <Outlet />
         {/* <Footer /> */}
     </div>

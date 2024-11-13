@@ -17,7 +17,7 @@ export default function UserProfile(prop) {
     localStorage.removeItem("token")
     setUserData(null);
   };
-
+  
   console.log("User data from profile", userData)
   console.log("Admin data from profile", AdminData);
    

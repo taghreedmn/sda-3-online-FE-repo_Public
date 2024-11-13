@@ -14,8 +14,10 @@ export default function Home({ products }) {
     const navigate = useNavigate();
 
     const handleClick = (product) => {
-        navigate(`/GamesDetail/${product.id}`, {
-            state: { product }
+        navigate("/GamesDetail", {
+            state: {
+                gameId: product.videoGameInfoId,
+            },
         });
     };
 

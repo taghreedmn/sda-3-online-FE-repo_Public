@@ -126,7 +126,7 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <LayOut isAdmin={isAdmin} />,
+      element: <LayOut isAdmin={isAdmin} isAuthenticated={isAuthenticated} userData={userData} setUserData={setUserData} />,
       children: [
         {
           path: "/",

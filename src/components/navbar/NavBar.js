@@ -7,7 +7,7 @@ import "../navbar/NavBar.css";
 import logo from '../../image/logo.png';
 
 const NavBar = (prop) => {
-  const { isAdmin } = prop;
+  const { isAdmin, isAuthenticated, userData, setUserData } = prop;
   const [itemCount, setItemCount] = useState(getTotalItemCount());
 
   useEffect(() => {
@@ -15,7 +15,6 @@ const NavBar = (prop) => {
     const handleStorageChange = () => {
       setItemCount(getTotalItemCount());
     };
-
     window.addEventListener("storage", handleStorageChange);
 
     // Cleanup listener on component unmount
@@ -23,6 +22,11 @@ const NavBar = (prop) => {
       window.removeEventListener("storage", handleStorageChange);
     };
   }, []);
+
+  const logOutHandler = (e) => {
+    localStorage.removeItem("token")
+    setUserData(null);
+  };
 
   return (
     <nav className="navbar">
@@ -46,10 +50,15 @@ const NavBar = (prop) => {
           <FaShoppingCart />
           {itemCount > 0 && <span className="cart-badge">{itemCount}</span>}
         </Link>
-
-        <Link to="/register" className="navbar-icon">
-          <FaUserPlus />
-        </Link>
+        {isAdmin ? (
+          <form>
+          <button type='Submit' onClick={logOutHandler} >log out</button>
+          </form>
+        ) : (
+            <Link to="/register" className="navbar-icon">
+              <FaUserPlus />
+            </Link>
+        )}
       </div>
 
     </nav>
