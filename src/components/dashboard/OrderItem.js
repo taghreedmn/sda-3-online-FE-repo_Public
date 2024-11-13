@@ -2,55 +2,24 @@ import React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import axios from 'axios';
 
-export default function UserItem({ user, totalCount }) {
+export default function OrderItem({ order, totalCount }) {
     // Define columns for the DataGrid
     const columns = [
         { field: 'id', headerName: 'ID', width: 70 },
-        { field: 'personName', headerName: 'Name', width: 250 },
-        { field: 'personEmail', headerName: 'Email', width: 250 },
-        { field: 'personPhoneNumber', headerName: 'Phone Number', width: 150 },
-        {
-            field: 'actions',
-            headerName: 'Actions',
-            width: 150,
-            renderCell: (params) => (
-                <div>
-                    <button onClick={() => handleDelete(params.row.personId)}>Delete</button>
-                    <button onClick={() => handleUpdate(params.row)}>Edit</button>
-                </div>
-            ),
-        },
+        { field: 'orderId', headerName: 'order Id', width: 250 },
+        { field: 'orderDate', headerName: 'order Date', width: 250 },
+        { field: 'orderedGames', headerName: 'ordered Games', width: 150 },
     ];
 
-    // Map over the users to create rows
-    const rows = user.map((user, index) => ({
+
+    const rows = order.map((order, index) => ({
         id: index + 1,
-        personName: user.personName,
-        personEmail: user.personEmail,
-        personPhoneNumber: user.personPhoneNumber,
-        personId: user.personId,
+        orderId: order.orderId,
+        orderDate: order.orderDate,
+        orderedGames: order.orderedGames[0].quantity,
+        
     }));
 
-    const handleDelete = async (personId) => {
-        try {
-            const token = localStorage.getItem('token');
-            const response = await axios.delete(`http://localhost:5125/api/v1/SystemAdmin?personId=${personId}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-            console.log(`Deleted user with ID: ${personId}`);
-            // Optionally, refresh the user list after deletion
-        } catch (error) {
-            console.error('Error deleting user:', error);
-        }
-    };
-
-
-    const handleUpdate = (user) => {
-        // Handle the update of the user, e.g., open a modal or navigate
-        console.log(`Updating user: ${user.personName}`);
-    };
 
     return (
         <div style={{ height: 600, width: '100%', marginBottom: '30px' }}>

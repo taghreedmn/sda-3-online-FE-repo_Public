@@ -151,11 +151,9 @@
     transform: scale(1.05);
     cursor: pointer;
 }
-
-/* Styling for the Add to Cart button */
 .add-to-cart-button {
     position: absolute;
-    bottom: 15px;
+    top: 780px;
     left: 50%;
     transform: translateX(-50%);
     background-color: #28a745;
@@ -170,7 +168,6 @@
 .add-to-cart-button:hover {
     background-color: #218838;
 }
-/* Filter Panel */
 .filter-card {
     width: 200px;
     height: 670px;

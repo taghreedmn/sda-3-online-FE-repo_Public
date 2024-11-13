@@ -7,7 +7,7 @@ import GamePagination from "./GamePagination";
 import PriceRangeForm from "./PriceRangeForm";
 
 export default function Products(prop) {
-    const { products, totalCount, page, handleChange, setMaxPrice, setMinPrice } = prop;
+    const { products, totalCount, page, handleChange, setMaxPrice, setMinPrice, limit } = prop;
     const [searchQuery, setSearchQuery] = useState("");
     const navigate = useNavigate();
 
@@ -55,7 +55,7 @@ export default function Products(prop) {
                 ))}
                 
             </div>
-            <GamePagination totalCount={totalCount} page={page} handleChange={handleChange} />
+            <GamePagination totalCount={totalCount} page={page} handleChange={handleChange} limit= {limit}/>
         </div>
         
     );

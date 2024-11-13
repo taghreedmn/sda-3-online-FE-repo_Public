@@ -1,0 +1,92 @@
+.dashboard-container {
+    display: flex;
+    align-items: flex-start;
+    padding: 20px;
+    margin-top: 100px;
+}
+
+.dashboard-toggle-group {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+}
+
+
+/* Neon style for custom toggle buttons */
+.MuiToggleButton-root {
+    border: 2px solid #39FF14;
+    /* Neon green border */
+    color: #39FF14;
+    /* Neon green text color */
+    background-color: transparent;
+    text-shadow: 0 0 8px #39FF14;
+    /* Neon glow effect */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.MuiToggleButton-root:hover {
+    background-color: #0f0f0f;
+    /* Darker background on hover */
+    color: #39FF14;
+    /* Keep neon text color on hover */
+}
+
+.MuiToggleButton-root.Mui-selected {
+    background-color: #FF1493;
+    /* Neon pink for selected state */
+    color: #fff;
+    /* White text for contrast in selected state */
+    text-shadow: none;
+    /* Remove glow in selected state */
+    border-color: #FF1493;
+    /* Neon pink border in selected state */
+}
+
+.MuiToggleButton-root.Mui-selected:hover {
+    background-color: #ff5ccd;
+    /* Lighter neon pink on hover when selected */
+}
+.dashboard-paper {
+    background-color: #1c1c1c;
+    /* Dark background for the Paper */
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+.dashboard-content {
+    padding: 20px;
+    margin-top: 30px;
+    margin-left: 30px;
+}
+/* Styling for DataGrid */
+.MuiDataGrid-root {
+    background-color: #1c1c1c !important;
+    /* Dark background for grid */
+}
+
+.MuiDataGrid-columnHeaders {
+    background-color: #2b2b2b !important;
+    /* Darker background for column headers */
+    color: #ffffff;
+}
+
+.MuiDataGrid-cell {
+    background-color: #2b2b2b !important;
+    /* Dark background for cells */
+    color: #fff;
+}
+
+.MuiDataGrid-row:hover {
+    background-color: #333333 !important;
+    /* Hover effect for rows */
+}
+
+.MuiDataGrid-cell:hover {
+    background-color: #ff6a00 !important;
+    /* Neon hover effect for cells */
+}
+
+.MuiDataGrid-checkboxInput.Mui-checked {
+    color: #ff6a00 !important;
+    /* Neon color for checkbox selection */
+}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { addToCart } from '../cart/CartUtils';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 import './Games.css';
 
 export default function GamesDetail() {
@@ -30,7 +31,20 @@ export default function GamesDetail() {
 
     const handleAddToCart = (product) => {
         addToCart(product);
-        alert(`${product.gameName} has been added to your cart!`);
+        Swal.fire({
+            text: `${product.gameName} has been added to your cart!`,
+            icon: "success",
+            timer: 3000,
+            button: false,
+            customClass: {
+                popup: 'neon-popup',
+                title: 'neon-title',
+                content: 'neon-content',
+                icon: 'neon-icon'
+            },
+            willClose: () => {
+            }
+        });
     };
 
     if (loading) {
@@ -53,7 +67,11 @@ export default function GamesDetail() {
             <p><strong>Price:</strong> {game.videoGameVersions[0].price} R.S</p>
             <p><strong>Rating:</strong> {game.totalRating}</p>
             <p><strong>Release Date:</strong> {game.yearOfRelease}</p>
-            <button onClick={() => handleAddToCart(game)} className="add-to-cart-button">Add to Cart</button>
+
+            {/* Move the Add to Cart button here */}
+            <button onClick={() => handleAddToCart(game)} className="add-to-cart-button">
+                Add to Cart
+            </button>
         </div>
     );
 }

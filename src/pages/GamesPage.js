@@ -7,7 +7,7 @@ export default function GamesPage (prop) {
     <div>
       <PriceRangeForm setMinPrice={prop.setMinPrice}setMaxPrice={prop.setMaxPrice} minPrice = {prop.minPrice} maxPrice = {prop.maxPrice}/>
       <Games products={prop.products} totalCount={prop.totalCount} page={prop.page} handleChange={prop.handleChange} setMinPrice={prop.setMinPrice}
-        setMaxPrice={prop.setMaxPrice} /> 
+        setMaxPrice={prop.setMaxPrice} limit = {prop.limit}/> 
     </div>
   )
 }

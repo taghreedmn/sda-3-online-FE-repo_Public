@@ -14,6 +14,9 @@ import Games from "./pages/GamesPage";
 import UserProfile from "./components/userInfo/UserProfile";
 import ProtectedRoute from "./components/userInfo/ProtectedRoute";
 import Dashboard from "./components/dashboard/Dashboard";
+import ProductDashBoard from "./components/dashboard/ProductDashBoard";
+import UserDashBoard from "./components/dashboard/UserDashBoard";
+import OrderDashBoard from "./components/dashboard/OrderDashBoard";
 
 
 
@@ -123,11 +126,11 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <LayOut />,
+      element: <LayOut isAdmin={isAdmin} />,
       children: [
         {
           path: "/",
-          element: <Home />,
+          element: <Home products = {productList.products}/>,
         },
         {
           path: "/Register",
@@ -140,7 +143,7 @@ function App() {
         {
           path: "/Games",
           element: < Games products={productList.products} totalCount={productList.totalCount} 
-                          page={page} handleChange={handleChange} 
+                          page={page} limit = {limit} handleChange={handleChange} 
                           setMinPrice={setMinPrice} setMaxPrice={setMaxPrice} 
                           minPrice = {minPrice} maxPrice ={maxPrice}/>,
         },
@@ -180,6 +183,37 @@ function App() {
               element={<Dashboard />}
            />,
         },
+        {
+          path: "/ProductDashboard",
+          element:
+            <ProtectedRoute
+              isUserDataLoading={isUserDataLoading}
+              isAdmin={isAdmin}
+              shouldCheckAdmin={true}
+              element={<ProductDashBoard />}
+            />,
+        },
+        {
+          path: "/UserDashBoard",
+          element:
+            <ProtectedRoute
+              isUserDataLoading={isUserDataLoading}
+              isAdmin={isAdmin}
+              shouldCheckAdmin={true}
+              element={<UserDashBoard />}
+            />,
+        },
+        {
+          path: "/OrderDashBoard",
+          element:
+            <ProtectedRoute
+              isUserDataLoading={isUserDataLoading}
+              isAdmin={isAdmin}
+              shouldCheckAdmin={true}
+              element={<OrderDashBoard />}
+            />,
+        },
+       
         
       ],
     },

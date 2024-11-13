@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import UserItem from './UserItem';
+import OrderItem from './OrderItem';
 import './Dashboard.css';
 
-export default function UserDashBoard() {
-    const [userList, setUserList] = useState({
-        users: [],
+export default function OrderDashBoard() {
+    const [orderList, setOrderList] = useState({
+        orders: [],
         totalCount: 0,
     });
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    let url = "http://localhost:5125/api/v1/Customer?Limit=100&Offset=0";
+    let url = "http://localhost:5125/api/v1/Order/all";
 
     function fetchData() {
         const token = localStorage.getItem("token");
@@ -21,8 +21,8 @@ export default function UserDashBoard() {
             },
         })
             .then((response) => {
-                setUserList({
-                    users: response.data.customers || [],
+                setOrderList({
+                    orders: response.data.orders || [],
                     totalCount: response.data.totalCount || 0
                 });
                 setLoading(false);
@@ -37,16 +37,16 @@ export default function UserDashBoard() {
         fetchData();
     }, [])
 
-    console.log(userList.users)
+    // console.log(uList.users)
 
     return (
         <div>
             {loading && <p>Loading...</p>}
             {error && <p>{error}</p>}
             {/* Render a single UserItem component with all users */}
-            <UserItem
-                user={userList.users}
-                totalCount={userList.totalCount}
+            <OrderItem
+                order={orderList.orders}
+                totalCount={orderList.totalCount}
             />
         </div>
     );

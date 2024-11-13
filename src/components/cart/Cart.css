@@ -15,7 +15,6 @@ h2 {
     font-size: 26px;
     margin-bottom: 20px;
     color: #00d1ff;
-    /* Neon teal color */
     text-shadow: 0 0 5px #00d1ff, 0 0 15px #00d1ff;
 }
 
@@ -25,8 +24,7 @@ h2 {
     margin-bottom: 20px;
     font-size: 20px;
     color: #00d1ff;
-    /* Neon pink color */
-    text-shadow: #00d1ff;
+    text-shadow: 0 0 5px #00d1ff;
 }
 
 /* Cart List */
@@ -58,7 +56,7 @@ h2 {
     border-radius: 8px;
     object-fit: cover;
     margin-right: 20px;
-    box-shadow:  #0fffc3, 0 0 20px #0fffc3;
+    box-shadow: 0 0 20px #0fffc3;
 }
 
 /* Cart Item Details */
@@ -71,8 +69,7 @@ h2 {
     font-size: 18px;
     margin: 0;
     color: #7dff1e;
-    /* Neon green color */
-    text-shadow:  #7dff1e, 0 0 15px #7dff1e;
+    text-shadow: 0 0 15px #7dff1e;
 }
 
 .cart-item-price {
@@ -98,4 +95,83 @@ h2 {
 .remove-button:hover {
     background-color: #ff1a1a;
     box-shadow: 0 0 15px #ff1a1a, 0 0 30px #ff1a1a;
+}
+
+/* Payment Method Styling */
+.payment-method-container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+}
+
+.payment-method-container label {
+    font-size: 16px;
+    color: #7dff1e;
+    font-weight: bold;
+    text-shadow: 0 0 5px #7dff1e, 0 0 15px #7dff1e;
+}
+
+#payment-method {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #00d1ff;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+    width: 100%;
+    box-shadow: 0 0 5px #00d1ff;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#payment-method:focus {
+    background-color: #444;
+    box-shadow: 0 0 15px #00d1ff;
+}
+
+/* Quantity Input Styling */
+.quantity-input {
+    width: 60px;
+    padding: 6px;
+    margin-top: 10px;
+    border: 1px solid #00d1ff;
+    border-radius: 5px;
+    background-color: #222;
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+    box-shadow: 0 0 5px #00d1ff;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.quantity-input:focus {
+    background-color: #444;
+    box-shadow: 0 0 10px #00d1ff;
+}
+
+/* Complete Order Button */
+.complete-order-button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 25px;
+    background-color: #00d1ff;
+    color: #121212;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 10px #00d1ff;
+}
+
+.complete-order-button:hover {
+    background-color: #00b0e6;
+    box-shadow: 0 0 20px #00b0e6;
+}
+
+.complete-order-button:active {
+    background-color: #0099cc;
+    box-shadow: 0 0 30px #0099cc;
 }

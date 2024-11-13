@@ -6,7 +6,8 @@ import { getTotalItemCount } from '../cart/CartUtils';
 import "../navbar/NavBar.css";
 import logo from '../../image/logo.png';
 
-const NavBar = () => {
+const NavBar = (prop) => {
+  const { isAdmin } = prop;
   const [itemCount, setItemCount] = useState(getTotalItemCount());
 
   useEffect(() => {
@@ -31,18 +32,26 @@ const NavBar = () => {
       <div className="navbar-links">
         <Link to="/">Home</Link>
         <Link to="/Games">Products</Link>
-        <Link to="/dashboard">Dashboard</Link>
+        <Link to="/About">About</Link>
+        
+        {isAdmin ? (
+          <Link to="/dashboard">Dashboard</Link>
+        ) : (
+          <p style={{ display: "none" }}>Dashboard</p>
+        )}
+
       </div>
       <div className="navbar-icons">
         <Link to="/Cart" className="navbar-icon">
           <FaShoppingCart />
-            {itemCount > 0 && <span className="cart-badge">{itemCount}</span>}
+          {itemCount > 0 && <span className="cart-badge">{itemCount}</span>}
         </Link>
-        
+
         <Link to="/register" className="navbar-icon">
           <FaUserPlus />
         </Link>
       </div>
+
     </nav>
   );
 };

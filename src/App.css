@@ -36,3 +36,45 @@
     transform: rotate(360deg);
   }
 }
+/* Custom styles for SweetAlert */
+.swal2-popup {
+  background-color: #222;
+  /* Dark background */
+  color: #ffffff;
+  /* White text */
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.8), 0 0 20px rgba(0, 255, 255, 0.6);
+  border-radius: 10px;
+}
+
+.swal2-title {
+  font-size: 24px;
+  color: #00d1ff;
+  /* Neon teal color */
+  text-shadow: 0 0 10px #00d1ff, 0 0 20px #00d1ff;
+  font-weight: bold;
+}
+
+.swal2-content {
+  font-size: 18px;
+  color: #ff69b4;
+  /* Neon pink color */
+  text-shadow: 0 0 10px #ff69b4, 0 0 15px #ff69b4;
+}
+
+.swal2-icon.swal2-success {
+  border-color: #7dff1e;
+  /* Neon green border for success icon */
+  background-color: #00ffcc;
+  /* Neon teal background for icon */
+  box-shadow: 0 0 15px #00ffcc;
+}
+
+.swal2-confirm {
+  display: none;
+  /* Hide the button */
+}
+
+.swal2-timer-progress-bar {
+  background-color: #00d1ff;
+  /* Neon teal progress bar */
+}
