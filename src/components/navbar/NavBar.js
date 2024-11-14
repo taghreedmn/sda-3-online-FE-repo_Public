@@ -43,6 +43,11 @@ const NavBar = (prop) => {
         ) : (
           <p style={{ display: "none" }}>Dashboard</p>
         )}
+        {isAuthenticated ? (
+          <Link to="/Profile">Profile</Link>
+        ) : (
+          <p style={{ display: "none" }}>Dashboard</p>
+        )}
 
       </div>
       <div className="navbar-icons">

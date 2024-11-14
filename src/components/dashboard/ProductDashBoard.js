@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ProductItem from './ProductItem';
-import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 import { Dialog, DialogTitle, DialogContent, DialogActions, TextField, Button, Select, MenuItem } from '@mui/material';
 import './Dashboard.css';
 
@@ -99,7 +99,17 @@ export default function ProductDashBoard() {
 
     const handleCreateProduct = async () => {
         console.log(newProduct, "new Product from handler")
-        swal({ text: `${newProduct}`, icon: "success", timer: 5000, button: false });
+        Swal.fire({
+            text: `${newProduct} has been added !`,
+            icon: "success",
+            showConfirmButton: true,
+            customClass: {
+                popup: 'neon-popup',
+                title: 'neon-title',
+                content: 'neon-content',
+                icon: 'neon-icon'
+            },
+        });
         try {
             const token = localStorage.getItem('token');
             await axios.post('http://localhost:5125/api/v1/VideoGamesInfo', newProduct, {
@@ -108,7 +118,17 @@ export default function ProductDashBoard() {
                 },
             });
             setOpenCreateDialog(false);
-            swal({ text: "Game created", icon: "success", timer: 1500, button: false });
+            Swal.fire({
+                text: `Game created`,
+                icon: "success",
+                showConfirmButton: true,
+                customClass: {
+                    popup: 'neon-popup',
+                    title: 'neon-title',
+                    content: 'neon-content',
+                    icon: 'neon-icon'
+                },
+            });
         } catch (error) {
             console.error("Error creating product:", error);
         }

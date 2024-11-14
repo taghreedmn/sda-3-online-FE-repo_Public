@@ -51,15 +51,15 @@ export default function Cart() {
             return;
         }
         const token = localStorage.getItem("token");
-        const storeId = "b15664cd-da73-46bf-a47f-7be46fdd346a"; // Replace with actual store ID if needed
-        const paymentId = selectedPaymentMethod.paymentId; // Assuming the API returns an "id" for the payment method
+        const storeId = "b15664cd-da73-46bf-a47f-7be46fdd346a"; 
+        const paymentId = selectedPaymentMethod.paymentId; 
         const orderedGames = cartItems.map(item => ({
-            videoGameVersionID: item.videoGameVersions[0].videoGameVersionId, // Assuming this field exists
+            videoGameVersionID: item.videoGameVersions[0].videoGameVersionId, 
             quantity: item.quantity
         }));
 
         const orderData = {
-            employeeId: 1001, // Replace with the actual employee ID if needed
+            employeeId: 1001,
             storeId,
             paymentId,
             orderedGames
@@ -76,7 +76,7 @@ export default function Cart() {
             console.log("Order successfully placed:", response.data);
 
             // Clear the cart in local storage and reset the state
-            localStorage.removeItem("cart"); // Assuming the cart is stored in localStorage
+            localStorage.removeItem("cart"); 
             setCartItems([]); // Empty the cart state
             setTotalPrice(0); // Reset the total price
 
@@ -153,7 +153,7 @@ return (
                         <option value="">Select Payment Method</option>
                         {paymentMethods.map((method) => (
                             <option key={method.paymentId} value={method.paymentId}>
-                                {method.paymentMethod} {/* Assuming name is the display name */}
+                                {method.paymentMethod} 
                             </option>
                         ))}
                     </select>

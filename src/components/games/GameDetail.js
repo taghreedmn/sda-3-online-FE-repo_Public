@@ -35,7 +35,7 @@ export default function GamesDetail() {
         Swal.fire({
             text: `${product.gameName} has been added to your cart!`,
             icon: "success",
-            showConfirmButton: true, // Show an "OK" button
+            showConfirmButton: true, 
             customClass: {
                 popup: 'neon-popup',
                 title: 'neon-title',
@@ -43,7 +43,7 @@ export default function GamesDetail() {
                 icon: 'neon-icon'
             },
         }).then(() => {
-            // Reload the page after the user clicks "OK"
+
             window.location.reload();
         });
     };
@@ -70,7 +70,6 @@ export default function GamesDetail() {
             <p><strong>Rating:</strong> {game.totalRating}</p>
             <p><strong>Release Date:</strong> {game.yearOfRelease}</p>
 
-            {/* Move the Add to Cart button here */}
             <button onClick={() => handleAddToCart(game)} className="add-to-cart-button">
                 Add to Cart
             </button>
