@@ -43,11 +43,11 @@ const NavBar = (prop) => {
         ) : (
           <p style={{ display: "none" }}>Dashboard</p>
         )}
-        {isAuthenticated ? (
+        {/* {isAuthenticated ? (
           <Link to="/Profile">Profile</Link>
         ) : (
-          <p style={{ display: "none" }}>Dashboard</p>
-        )}
+          <p style={{ display: "none" }}>Profile</p>
+        )} */}
 
       </div>
       <div className="navbar-icons">
@@ -57,13 +57,16 @@ const NavBar = (prop) => {
         </Link>
         {isAdmin ? (
           <form>
-          <button type='Submit' onClick={logOutHandler} >log out</button>
+            <button type='Submit' onClick={logOutHandler} >log out</button>
           </form>
         ) : (
+          isAuthenticated ? (
+              <Link to="/Profile" className="navbar-icon">Profile</Link>
+          ) : (
             <Link to="/register" className="navbar-icon">
               <FaUserPlus />
             </Link>
-        )}
+          ))}
       </div>
 
     </nav>

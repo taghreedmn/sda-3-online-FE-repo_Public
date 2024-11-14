@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import axios from 'axios';
-import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 import { Dialog, DialogTitle, DialogContent, DialogActions, TextField, Button } from '@mui/material';
 
 export default function ProductItem({ product, totalCount }) {
@@ -47,7 +47,20 @@ export default function ProductItem({ product, totalCount }) {
           Authorization: `Bearer ${token}`,
         },
       });
-      swal({ text: "Game deleted", icon: "success", timer: 1500, button: false });
+      Swal.fire({
+        text: "Game has been deleted",
+        icon: "success",
+        showConfirmButton: true,
+        customClass: {
+          popup: 'neon-popup',
+          title: 'neon-title',
+          content: 'neon-content',
+          icon: 'neon-icon'
+        },
+      }).then(() => {
+
+        window.location.reload();
+      });
 
       // Optionally, you can trigger a state update here to refresh the list of products
     } catch (error) {
@@ -98,7 +111,20 @@ export default function ProductItem({ product, totalCount }) {
         }
       );
 
-      swal({ text: "Game updated", icon: "success", timer: 1500, button: false });
+      Swal.fire({
+        text: "Game has been updated",
+        icon: "success",
+        showConfirmButton: true,
+        customClass: {
+          popup: 'neon-popup',
+          title: 'neon-title',
+          content: 'neon-content',
+          icon: 'neon-icon'
+        },
+      }).then(() => {
+
+        window.location.reload();
+      });
       setOpenEditDialog(false);
     } catch (error) {
       console.error('Error updating game:', error);

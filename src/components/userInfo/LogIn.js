@@ -70,7 +70,7 @@ export default function LogIn({ getUserData, getAdminData }) {
                             willClose: () => {
                             }
                         });
-                        navigate('/Profile');
+                        navigate('/');
                     }
                 }
             })

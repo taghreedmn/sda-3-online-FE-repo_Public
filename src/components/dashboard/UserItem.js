@@ -1,6 +1,7 @@
 import React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 export default function UserItem({ user, totalCount }) {
     // Define columns for the DataGrid
@@ -40,7 +41,21 @@ export default function UserItem({ user, totalCount }) {
                 },
             });
             console.log(`Deleted user with ID: ${personId}`);
-            // Optionally, refresh the user list after deletion
+            Swal.fire({
+                text: "user has been deleted",
+                icon: "success",
+                showConfirmButton: true,
+                customClass: {
+                    popup: 'neon-popup',
+                    title: 'neon-title',
+                    content: 'neon-content',
+                    icon: 'neon-icon'
+                },
+            }).then(() => {
+
+                window.location.reload();
+            });
+            
         } catch (error) {
             console.error('Error deleting user:', error);
         }
