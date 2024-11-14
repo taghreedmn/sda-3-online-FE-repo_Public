@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './SignForm.css';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
-import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 import { jwtDecode } from 'jwt-decode';
 
 export default function LogIn({ getUserData, getAdminData }) {
@@ -39,11 +39,37 @@ export default function LogIn({ getUserData, getAdminData }) {
                     // Check role and navigate accordingly
                     if (userRole === "SystemAdmin") {
                         getAdminData();
-                        swal({ text: "Welcome Admin", icon: "success", timer: 1500, button: false });
+                        Swal.fire({
+                            text: "Welcome Admin",
+                            icon: "success",
+                            timer: 3000,
+                            button: false,
+                            customClass: {
+                                popup: 'neon-popup',
+                                title: 'neon-title',
+                                content: 'neon-content',
+                                icon: 'neon-icon'
+                            },
+                            willClose: () => {
+                            }
+                        });
                         navigate('/AdminProfile');
                     } else {
                         getUserData();
-                        swal({ text: "You are in", icon: "success", timer: 1500, button: false });
+                        Swal.fire({
+                            text: "Welcome",
+                            icon: "success",
+                            timer: 3000,
+                            button: false,
+                            customClass: {
+                                popup: 'neon-popup',
+                                title: 'neon-title',
+                                content: 'neon-content',
+                                icon: 'neon-icon'
+                            },
+                            willClose: () => {
+                            }
+                        });
                         navigate('/Profile');
                     }
                 }

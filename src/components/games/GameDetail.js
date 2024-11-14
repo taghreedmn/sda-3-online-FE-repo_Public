@@ -31,21 +31,23 @@ export default function GamesDetail() {
 
     const handleAddToCart = (product) => {
         addToCart(product);
+
         Swal.fire({
             text: `${product.gameName} has been added to your cart!`,
             icon: "success",
-            timer: 3000,
-            button: false,
+            showConfirmButton: true, // Show an "OK" button
             customClass: {
                 popup: 'neon-popup',
                 title: 'neon-title',
                 content: 'neon-content',
                 icon: 'neon-icon'
             },
-            willClose: () => {
-            }
+        }).then(() => {
+            // Reload the page after the user clicks "OK"
+            window.location.reload();
         });
     };
+
 
     if (loading) {
         return <div>Loading...</div>;

@@ -41,6 +41,7 @@ export default function Cart() {
         removeFromCart(productId);
         setCartItems(getCart()); // Refresh the cart items
         setTotalPrice(getTotalPrice()); // Refresh the total price
+        window.location.reload(false);
     };
 
     // Handle completing the order
@@ -93,6 +94,7 @@ export default function Cart() {
                 willClose: () => {
                 }
             });
+            window.location.reload(false);
         } catch (error) {
             console.error("Error completing order:", orderData);
             alert("Failed to complete the order.");

@@ -152,9 +152,9 @@
     cursor: pointer;
 }
 .add-to-cart-button {
-    position: absolute;
-    top: 780px;
-    left: 50%;
+    position:relative;
+    top: 35px;
+    left: 7%;
     transform: translateX(-50%);
     background-color: #28a745;
     color: #fff;
