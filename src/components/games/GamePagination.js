@@ -1,6 +1,7 @@
 import React from 'react'
 import Pagination from '@mui/material/Pagination';
 
+
 export default function GamePagination(prop) {
     const { totalCount, page, handleChange, limit } = prop;
   return (

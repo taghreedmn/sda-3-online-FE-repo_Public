@@ -50,8 +50,7 @@ export default function LogIn({ getUserData, getAdminData }) {
                                 content: 'neon-content',
                                 icon: 'neon-icon'
                             },
-                            willClose: () => {
-                            }
+                           
                         });
                         navigate('/AdminProfile');
                     } else {
@@ -67,8 +66,7 @@ export default function LogIn({ getUserData, getAdminData }) {
                                 content: 'neon-content',
                                 icon: 'neon-icon'
                             },
-                            willClose: () => {
-                            }
+                           
                         });
                         navigate('/');
                     }

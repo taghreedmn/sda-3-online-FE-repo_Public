@@ -41,7 +41,6 @@ export default function Cart() {
         removeFromCart(productId);
         setCartItems(getCart()); // Refresh the cart items
         setTotalPrice(getTotalPrice()); // Refresh the total price
-        window.location.reload(false);
     };
 
     // Handle completing the order
@@ -51,15 +50,15 @@ export default function Cart() {
             return;
         }
         const token = localStorage.getItem("token");
-        const storeId = "b15664cd-da73-46bf-a47f-7be46fdd346a"; 
-        const paymentId = selectedPaymentMethod.paymentId; 
+        const storeId = "b15664cd-da73-46bf-a47f-7be46fdd346a"; // Replace with actual store ID if needed
+        const paymentId = selectedPaymentMethod.paymentId; // Assuming the API returns an "id" for the payment method
         const orderedGames = cartItems.map(item => ({
-            videoGameVersionID: item.videoGameVersions[0].videoGameVersionId, 
+            videoGameVersionID: item.videoGameVersions[0].videoGameVersionId, // Assuming this field exists
             quantity: item.quantity
         }));
 
         const orderData = {
-            employeeId: 1001,
+            employeeId: 1001, // Replace with the actual employee ID if needed
             storeId,
             paymentId,
             orderedGames
@@ -76,7 +75,7 @@ export default function Cart() {
             console.log("Order successfully placed:", response.data);
 
             // Clear the cart in local storage and reset the state
-            localStorage.removeItem("cart"); 
+            localStorage.removeItem("cart"); // Assuming the cart is stored in localStorage
             setCartItems([]); // Empty the cart state
             setTotalPrice(0); // Reset the total price
 
@@ -93,8 +92,10 @@ export default function Cart() {
                 },
                 willClose: () => {
                 }
+            }).then(() => {
+
+                window.location.reload();
             });
-            window.location.reload(false);
         } catch (error) {
             console.error("Error completing order:", orderData);
             alert("Failed to complete the order.");
@@ -153,7 +154,7 @@ return (
                         <option value="">Select Payment Method</option>
                         {paymentMethods.map((method) => (
                             <option key={method.paymentId} value={method.paymentId}>
-                                {method.paymentMethod} 
+                                {method.paymentMethod} {/* Assuming name is the display name */}
                             </option>
                         ))}
                     </select>

@@ -109,7 +109,7 @@ export default function ProductDashBoard() {
                 content: 'neon-content',
                 icon: 'neon-icon'
             },
-        });
+        })
         try {
             const token = localStorage.getItem('token');
             await axios.post('http://localhost:5125/api/v1/VideoGamesInfo', newProduct, {
@@ -128,6 +128,9 @@ export default function ProductDashBoard() {
                     content: 'neon-content',
                     icon: 'neon-icon'
                 },
+            }).then(() => {
+
+                window.location.reload();
             });
         } catch (error) {
             console.error("Error creating product:", error);
