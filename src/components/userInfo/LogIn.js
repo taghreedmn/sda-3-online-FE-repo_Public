@@ -19,7 +19,7 @@ export default function LogIn({ getUserData, getAdminData }) {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const logUrl = "https://fusiontech-q0v4.onrender.com/api/v1/Person/signIn";
+        const logUrl = "https://fusiontech-0dxp.onrender.com/api/v1/Person/signIn";
         const dataToSend = {
             personEmail: formData.email,
             personPassword: formData.password,

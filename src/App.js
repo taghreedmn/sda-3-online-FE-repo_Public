@@ -41,7 +41,7 @@ function App() {
 
   let offset = (page - 1) * limit;
 
-  let url = `https://fusiontech-q0v4.onrender.com/api/v1/VideoGamesInfo/Detailed?MinPrice=${minPrice}&MaxPrice=${maxPrice}&Limit=${limit}&Offset=${offset}`;
+  let url = `https://fusiontech-0dxp.onrender.com/api/v1/VideoGamesInfo/Detailed?MinPrice=${minPrice}&MaxPrice=${maxPrice}&Limit=${limit}&Offset=${offset}`;
 
   function getData() {
     axios.get(url)
@@ -65,13 +65,13 @@ function App() {
     getData();
   }, [offset, limit, minPrice, maxPrice,]);
 
-  //https://fusiontech-q0v4.onrender.com/api/v1/SystemAdmin/Profile
+  //https://fusiontech-0dxp.onrender.com/api/v1/SystemAdmin/Profile
 
   function getAdminData() {
     setIsUserDataLoading(true);
     const token = localStorage.getItem("token");
     axios
-      .get("https://fusiontech-q0v4.onrender.com/api/v1/SystemAdmin/Profile", {
+      .get("https://fusiontech-0dxp.onrender.com/api/v1/SystemAdmin/Profile", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -94,7 +94,7 @@ function App() {
     setIsUserDataLoading(true);
     const token = localStorage.getItem("token");
     axios
-      .get("https://fusiontech-q0v4.onrender.com/api/v1/Customer/Profile", {
+      .get("https://fusiontech-0dxp.onrender.com/api/v1/Customer/Profile", {
         headers: {
           Authorization: `Bearer ${token}`,
         },

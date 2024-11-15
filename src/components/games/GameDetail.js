@@ -14,7 +14,7 @@ export default function GamesDetail() {
 
     function fetchGameDetail() {
         axios
-            .get(`https://fusiontech-q0v4.onrender.com/api/v1/VideoGamesInfo/${gameId}`)
+            .get(`https://fusiontech-0dxp.onrender.com/api/v1/VideoGamesInfo/${gameId}`)
             .then((response) => {
                 setGame(response.data);
                 setLoading(false);

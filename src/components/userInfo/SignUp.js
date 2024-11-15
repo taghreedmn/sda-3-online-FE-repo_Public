@@ -16,7 +16,7 @@ export default function SignUp() {
         setFormData({ ...formData, [e.target.name]: e.target.value })
     };
     const handleSubmit = (e) => {
-        const userUrl = "https://fusiontech-q0v4.onrender.com/api/v1/Customer";
+        const userUrl = "https://fusiontech-0dxp.onrender.com/api/v1/Customer";
 
         const dataToSend = {
             personName: formData.username,

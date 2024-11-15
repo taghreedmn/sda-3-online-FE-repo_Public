@@ -20,7 +20,7 @@ export default function Cart() {
     // Fetch payment methods from the API
     const fetchPaymentMethods = async () => {
         try {
-            const response = await axios.get("https://fusiontech-q0v4.onrender.com/api/v1/Payment");
+            const response = await axios.get("https://fusiontech-0dxp.onrender.com/api/v1/Payment");
             setPaymentMethods(response.data || []);
         } catch (error) {
             console.error("Error fetching payment methods:", error);
@@ -65,7 +65,7 @@ export default function Cart() {
         };
 
         try {
-            const response = await axios.post("https://fusiontech-q0v4.onrender.com/api/v1/Order", orderData, {
+            const response = await axios.post("https://fusiontech-0dxp.onrender.com/api/v1/Order", orderData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -92,7 +92,7 @@ export default function Cart() {
                 },
                 willClose: () => {
                 }
-            }); 
+            });
         } catch (error) {
             console.error("Error completing order:", orderData);
             alert("Failed to complete the order.");

@@ -38,11 +38,11 @@ export default function ProductItem({ product, totalCount }) {
     videoGameVersionId: product.videoGameVersions[0]?.videoGameVersionId,
   }));
 
-  //https://fusiontech-q0v4.onrender.com/api/v1/VideoGamesInfo/${videoGameInfoId}
+  //https://fusiontech-0dxp.onrender.com/api/v1/VideoGamesInfo/${videoGameInfoId}
   const handleDelete = async (videoGameInfoId) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.delete(`https://fusiontech-q0v4.onrender.com/api/v1/VideoGamesInfo/${videoGameInfoId}`, {
+      const response = await axios.delete(`https://fusiontech-0dxp.onrender.com/api/v1/VideoGamesInfo/${videoGameInfoId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -81,7 +81,7 @@ export default function ProductItem({ product, totalCount }) {
       const newGameName = selectedGame.gameName; // Retrieve updated game name from selectedGame state
 
       await axios.put(
-        `https://fusiontech-q0v4.onrender.com/api/v1/VideoGamesInfo/${selectedGame.videoGameInfoId}?newGameName=${newGameName}`,
+        `https://fusiontech-0dxp.onrender.com/api/v1/VideoGamesInfo/${selectedGame.videoGameInfoId}?newGameName=${newGameName}`,
         selectedGame,
         {
           headers: {
@@ -90,7 +90,7 @@ export default function ProductItem({ product, totalCount }) {
         }
       );
       await axios.put(
-        `https://fusiontech-q0v4.onrender.com/api/v1/VideoGamesInfo/${selectedGame.videoGameInfoId}/year?newYearOfRelease=${selectedGame.yearOfRelease}`,
+        `https://fusiontech-0dxp.onrender.com/api/v1/VideoGamesInfo/${selectedGame.videoGameInfoId}/year?newYearOfRelease=${selectedGame.yearOfRelease}`,
         selectedGame,
         {
           headers: {
@@ -99,7 +99,7 @@ export default function ProductItem({ product, totalCount }) {
         }
       );
       await axios.put(
-        `https://fusiontech-q0v4.onrender.com/api/v1/VideoGamesVersion/${selectedGame.videoGameVersionId}`,
+        `https://fusiontech-0dxp.onrender.com/api/v1/VideoGamesVersion/${selectedGame.videoGameVersionId}`,
         selectedGame,
         {
           headers: {
