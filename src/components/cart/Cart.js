@@ -92,10 +92,7 @@ export default function Cart() {
                 },
                 willClose: () => {
                 }
-            }).then(() => {
-
-                window.location.reload();
-            });
+            }); 
         } catch (error) {
             console.error("Error completing order:", orderData);
             alert("Failed to complete the order.");

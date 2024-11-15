@@ -42,9 +42,6 @@ export default function GamesDetail() {
                 content: 'neon-content',
                 icon: 'neon-icon'
             },
-        }).then(() => {
-
-            window.location.reload();
         });
     };
 

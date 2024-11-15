@@ -128,9 +128,6 @@ export default function ProductDashBoard() {
                     content: 'neon-content',
                     icon: 'neon-icon'
                 },
-            }).then(() => {
-
-                window.location.reload();
             });
         } catch (error) {
             console.error("Error creating product:", error);

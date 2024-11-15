@@ -51,9 +51,6 @@ export default function UserItem({ user, totalCount }) {
                     content: 'neon-content',
                     icon: 'neon-icon'
                 },
-            }).then(() => {
-
-                window.location.reload();
             });
 
         } catch (error) {

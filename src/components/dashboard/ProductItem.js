@@ -57,9 +57,6 @@ export default function ProductItem({ product, totalCount }) {
           content: 'neon-content',
           icon: 'neon-icon'
         },
-      }).then(() => {
-
-        window.location.reload();
       });
 
       // Optionally, you can trigger a state update here to refresh the list of products
@@ -121,9 +118,6 @@ export default function ProductItem({ product, totalCount }) {
           content: 'neon-content',
           icon: 'neon-icon'
         },
-      }).then(() => {
-
-        window.location.reload();
       });
       setOpenEditDialog(false);
     } catch (error) {
