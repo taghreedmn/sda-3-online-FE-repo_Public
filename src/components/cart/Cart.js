@@ -20,7 +20,7 @@ export default function Cart() {
     // Fetch payment methods from the API
     const fetchPaymentMethods = async () => {
         try {
-            const response = await axios.get("http://localhost:5125/api/v1/Payment");
+            const response = await axios.get("https://fusiontech-q0v4.onrender.com/api/v1/Payment");
             setPaymentMethods(response.data || []);
         } catch (error) {
             console.error("Error fetching payment methods:", error);
@@ -65,7 +65,7 @@ export default function Cart() {
         };
 
         try {
-            const response = await axios.post("http://localhost:5125/api/v1/Order", orderData, {
+            const response = await axios.post("https://fusiontech-q0v4.onrender.com/api/v1/Order", orderData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -86,9 +86,9 @@ export default function Cart() {
                 button: false,
                 customClass: {
                     popup: 'neon-popup',
-                    title: 'neon-title',  
-                    content: 'neon-content', 
-                    icon: 'neon-icon'  
+                    title: 'neon-title',
+                    content: 'neon-content',
+                    icon: 'neon-icon'
                 },
                 willClose: () => {
                 }
@@ -102,70 +102,70 @@ export default function Cart() {
         }
     };
 
-return (
-    <div className="cart-container">
-        <h2>Your Cart</h2>
-        <p className="total-price">Total Price: R.S {totalPrice}</p>
-        {cartItems.length === 0 ? (
-            <p>Your cart is empty.</p>
-        ) : (
-            <div className="cart-list">
-                {cartItems.map((item) => (
-                    <div key={item.videoGameInfoId} className="cart-item">
-                        <img src={item.gamePicturePath} alt={item.gameName} className="cart-item-image" />
-                        <div className="cart-item-details">
-                            <p className="cart-item-name">{item.gameName}</p>
-                            <p className="cart-item-price">Price: R.S {item.videoGameVersions[0].price}</p>
+    return (
+        <div className="cart-container">
+            <h2>Your Cart</h2>
+            <p className="total-price">Total Price: R.S {totalPrice}</p>
+            {cartItems.length === 0 ? (
+                <p>Your cart is empty.</p>
+            ) : (
+                <div className="cart-list">
+                    {cartItems.map((item) => (
+                        <div key={item.videoGameInfoId} className="cart-item">
+                            <img src={item.gamePicturePath} alt={item.gameName} className="cart-item-image" />
+                            <div className="cart-item-details">
+                                <p className="cart-item-name">{item.gameName}</p>
+                                <p className="cart-item-price">Price: R.S {item.videoGameVersions[0].price}</p>
 
-                            {/* Quantity Input */}
-                            <input
-                                type="number"
-                                value={item.quantity || 1}
-                                min="1"
-                                onChange={(e) => handleQuantityChange(item.videoGameInfoId, parseInt(e.target.value))}
-                                className="quantity-input"
-                            />
+                                {/* Quantity Input */}
+                                <input
+                                    type="number"
+                                    value={item.quantity || 1}
+                                    min="1"
+                                    onChange={(e) => handleQuantityChange(item.videoGameInfoId, parseInt(e.target.value))}
+                                    className="quantity-input"
+                                />
 
-                            {/* Remove Button */}
-                            <button onClick={() => handleRemove(item.videoGameInfoId)} className="remove-button">
-                                Remove
-                            </button>
+                                {/* Remove Button */}
+                                <button onClick={() => handleRemove(item.videoGameInfoId)} className="remove-button">
+                                    Remove
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                ))}
-            </div>
-        )}
+                    ))}
+                </div>
+            )}
 
-        {/* Complete Order Button */}
-        {cartItems.length > 0 && (
-            <>
-                <div className="payment-method-container">
-                    <label htmlFor="payment-method">Choose Payment Method:</label>
-                    <select
-                        id="payment-method"
-                        value={selectedPaymentMethod ? selectedPaymentMethod.id : ""}
-                        onChange={(e) => {
-                            const selectedPayment = paymentMethods.find(
-                                (method) => method.paymentId === e.target.value
-                            );
-                            setSelectedPaymentMethod(selectedPayment);
-                        }}
-                    >
-                        <option value="">Select Payment Method</option>
-                        {paymentMethods.map((method) => (
-                            <option key={method.paymentId} value={method.paymentId}>
-                                {method.paymentMethod} {/* Assuming name is the display name */}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-                <div>
-            <button onClick={handleCompleteOrder} className="complete-order-button">
-                Complete Order
-            </button>
-                </div>
-            </>
-        )}
-    </div>
-);
+            {/* Complete Order Button */}
+            {cartItems.length > 0 && (
+                <>
+                    <div className="payment-method-container">
+                        <label htmlFor="payment-method">Choose Payment Method:</label>
+                        <select
+                            id="payment-method"
+                            value={selectedPaymentMethod ? selectedPaymentMethod.id : ""}
+                            onChange={(e) => {
+                                const selectedPayment = paymentMethods.find(
+                                    (method) => method.paymentId === e.target.value
+                                );
+                                setSelectedPaymentMethod(selectedPayment);
+                            }}
+                        >
+                            <option value="">Select Payment Method</option>
+                            {paymentMethods.map((method) => (
+                                <option key={method.paymentId} value={method.paymentId}>
+                                    {method.paymentMethod} {/* Assuming name is the display name */}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                    <div>
+                        <button onClick={handleCompleteOrder} className="complete-order-button">
+                            Complete Order
+                        </button>
+                    </div>
+                </>
+            )}
+        </div>
+    );
 } 

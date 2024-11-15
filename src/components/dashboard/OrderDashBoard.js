@@ -11,7 +11,7 @@ export default function OrderDashBoard() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    let url = "http://localhost:5125/api/v1/Order/all";
+    let url = "https://fusiontech-q0v4.onrender.com/api/v1/Order/all";
 
     function fetchData() {
         const token = localStorage.getItem("token");

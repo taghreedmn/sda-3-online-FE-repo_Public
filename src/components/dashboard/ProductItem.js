@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import axios from 'axios';
 import Swal from 'sweetalert2';
@@ -38,11 +38,11 @@ export default function ProductItem({ product, totalCount }) {
     videoGameVersionId: product.videoGameVersions[0]?.videoGameVersionId,
   }));
 
-  //http://localhost:5125/api/v1/VideoGamesInfo/${videoGameInfoId}
+  //https://fusiontech-q0v4.onrender.com/api/v1/VideoGamesInfo/${videoGameInfoId}
   const handleDelete = async (videoGameInfoId) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.delete(`http://localhost:5125/api/v1/VideoGamesInfo/${videoGameInfoId}`, {
+      const response = await axios.delete(`https://fusiontech-q0v4.onrender.com/api/v1/VideoGamesInfo/${videoGameInfoId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -70,9 +70,9 @@ export default function ProductItem({ product, totalCount }) {
 
 
   const handleUpdate = (game) => {
-      setSelectedGame(game);
-      setOpenEditDialog(true);  
-    };
+    setSelectedGame(game);
+    setOpenEditDialog(true);
+  };
   const handleEditClose = () => {
     setOpenEditDialog(false);
     setSelectedGame(null);
@@ -84,7 +84,7 @@ export default function ProductItem({ product, totalCount }) {
       const newGameName = selectedGame.gameName; // Retrieve updated game name from selectedGame state
 
       await axios.put(
-        `http://localhost:5125/api/v1/VideoGamesInfo/${selectedGame.videoGameInfoId}?newGameName=${newGameName}`,
+        `https://fusiontech-q0v4.onrender.com/api/v1/VideoGamesInfo/${selectedGame.videoGameInfoId}?newGameName=${newGameName}`,
         selectedGame,
         {
           headers: {
@@ -93,7 +93,7 @@ export default function ProductItem({ product, totalCount }) {
         }
       );
       await axios.put(
-        `http://localhost:5125/api/v1/VideoGamesInfo/${selectedGame.videoGameInfoId}/year?newYearOfRelease=${selectedGame.yearOfRelease}`,
+        `https://fusiontech-q0v4.onrender.com/api/v1/VideoGamesInfo/${selectedGame.videoGameInfoId}/year?newYearOfRelease=${selectedGame.yearOfRelease}`,
         selectedGame,
         {
           headers: {
@@ -102,7 +102,7 @@ export default function ProductItem({ product, totalCount }) {
         }
       );
       await axios.put(
-        `http://localhost:5125/api/v1/VideoGamesVersion/${selectedGame.videoGameVersionId}`,
+        `https://fusiontech-q0v4.onrender.com/api/v1/VideoGamesVersion/${selectedGame.videoGameVersionId}`,
         selectedGame,
         {
           headers: {

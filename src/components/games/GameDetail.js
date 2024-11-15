@@ -14,7 +14,7 @@ export default function GamesDetail() {
 
     function fetchGameDetail() {
         axios
-            .get(`http://localhost:5125/api/v1/VideoGamesInfo/${gameId}`)
+            .get(`https://fusiontech-q0v4.onrender.com/api/v1/VideoGamesInfo/${gameId}`)
             .then((response) => {
                 setGame(response.data);
                 setLoading(false);
@@ -35,7 +35,7 @@ export default function GamesDetail() {
         Swal.fire({
             text: `${product.gameName} has been added to your cart!`,
             icon: "success",
-            showConfirmButton: true, 
+            showConfirmButton: true,
             customClass: {
                 popup: 'neon-popup',
                 title: 'neon-title',

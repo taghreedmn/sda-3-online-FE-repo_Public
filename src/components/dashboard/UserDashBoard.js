@@ -11,7 +11,7 @@ export default function UserDashBoard() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    let url = "http://localhost:5125/api/v1/Customer?Limit=100&Offset=0";
+    let url = "https://fusiontech-q0v4.onrender.com/api/v1/Customer?Limit=100&Offset=0";
 
     function fetchData() {
         const token = localStorage.getItem("token");

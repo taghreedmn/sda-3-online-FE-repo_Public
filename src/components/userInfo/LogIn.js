@@ -19,7 +19,7 @@ export default function LogIn({ getUserData, getAdminData }) {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const logUrl = "http://localhost:5125/api/v1/Person/signIn";
+        const logUrl = "https://fusiontech-q0v4.onrender.com/api/v1/Person/signIn";
         const dataToSend = {
             personEmail: formData.email,
             personPassword: formData.password,
@@ -50,7 +50,7 @@ export default function LogIn({ getUserData, getAdminData }) {
                                 content: 'neon-content',
                                 icon: 'neon-icon'
                             },
-                           
+
                         });
                         navigate('/AdminProfile');
                     } else {
@@ -66,7 +66,7 @@ export default function LogIn({ getUserData, getAdminData }) {
                                 content: 'neon-content',
                                 icon: 'neon-icon'
                             },
-                           
+
                         });
                         navigate('/');
                     }

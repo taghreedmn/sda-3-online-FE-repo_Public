@@ -35,7 +35,7 @@ export default function UserItem({ user, totalCount }) {
     const handleDelete = async (personId) => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.delete(`http://localhost:5125/api/v1/SystemAdmin?personId=${personId}`, {
+            const response = await axios.delete(`https://fusiontech-q0v4.onrender.com/api/v1/SystemAdmin?personId=${personId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -55,7 +55,7 @@ export default function UserItem({ user, totalCount }) {
 
                 window.location.reload();
             });
-            
+
         } catch (error) {
             console.error('Error deleting user:', error);
         }

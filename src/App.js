@@ -30,7 +30,7 @@ function App() {
   const [isUserDataLoading, setIsUserDataLoading] = useState(true);
   const [maxPrice, setMaxPrice] = useState(1000);
   const [productList, setProductList] = useState({
-    products: [], 
+    products: [],
     totalCount: 0,
   });
 
@@ -41,7 +41,7 @@ function App() {
 
   let offset = (page - 1) * limit;
 
-  let url = `http://localhost:5125/api/v1/VideoGamesInfo/Detailed?MinPrice=${minPrice}&MaxPrice=${maxPrice}&Limit=${limit}&Offset=${offset}`;
+  let url = `https://fusiontech-q0v4.onrender.com/api/v1/VideoGamesInfo/Detailed?MinPrice=${minPrice}&MaxPrice=${maxPrice}&Limit=${limit}&Offset=${offset}`;
 
   function getData() {
     axios.get(url)
@@ -65,13 +65,13 @@ function App() {
     getData();
   }, [offset, limit, minPrice, maxPrice,]);
 
-  //http://localhost:5125/api/v1/SystemAdmin/Profile
+  //https://fusiontech-q0v4.onrender.com/api/v1/SystemAdmin/Profile
 
-   function getAdminData() {
+  function getAdminData() {
     setIsUserDataLoading(true);
     const token = localStorage.getItem("token");
     axios
-      .get("http://localhost:5125/api/v1/SystemAdmin/Profile", {
+      .get("https://fusiontech-q0v4.onrender.com/api/v1/SystemAdmin/Profile", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -94,7 +94,7 @@ function App() {
     setIsUserDataLoading(true);
     const token = localStorage.getItem("token");
     axios
-      .get("http://localhost:5125/api/v1/Customer/Profile", {
+      .get("https://fusiontech-q0v4.onrender.com/api/v1/Customer/Profile", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -113,8 +113,8 @@ function App() {
     getUserData();
   }, []);
 
-  let isAuthenticated = userData ? true : false; 
-  let isAdmin = adminData ? true : false; 
+  let isAuthenticated = userData ? true : false;
+  let isAdmin = adminData ? true : false;
 
   if (loading === true) {
     return <div>Please wait a second </div>
@@ -130,26 +130,26 @@ function App() {
       children: [
         {
           path: "/",
-          element: <Home products = {productList.products}/>,
+          element: <Home products={productList.products} />,
         },
         {
           path: "/Register",
-           element: < Register />,
-        }, 
+          element: < Register />,
+        },
         {
           path: "/Login",
           element: < Login getUserData={getUserData} getAdminData={getAdminData} isAdmin={isAdmin} isAuthenticated={isAuthenticated} />,
         },
         {
           path: "/Games",
-          element: < Games products={productList.products} totalCount={productList.totalCount} 
-                          page={page} limit = {limit} handleChange={handleChange} 
-                          setMinPrice={setMinPrice} setMaxPrice={setMaxPrice} 
-                          minPrice = {minPrice} maxPrice ={maxPrice}/>,
+          element: < Games products={productList.products} totalCount={productList.totalCount}
+            page={page} limit={limit} handleChange={handleChange}
+            setMinPrice={setMinPrice} setMaxPrice={setMaxPrice}
+            minPrice={minPrice} maxPrice={maxPrice} />,
         },
         {
           path: "/GamesDetail",
-          element: < GameDetail/>,
+          element: < GameDetail />,
         },
         {
           path: "/Cart",
@@ -158,10 +158,10 @@ function App() {
         {
           path: "/Profile",
           element:
-            <ProtectedRoute 
-            isUserDataLoading={isUserDataLoading}
-            isAuthenticated={isAuthenticated}
-            isAdmin={isAdmin}
+            <ProtectedRoute
+              isUserDataLoading={isUserDataLoading}
+              isAuthenticated={isAuthenticated}
+              isAdmin={isAdmin}
               element={< UserProfile userData={userData} setUserData={setUserData} />} />,
         },
         {
@@ -170,8 +170,8 @@ function App() {
             <ProtectedRoute
               isUserDataLoading={isUserDataLoading}
               isAdmin={isAdmin}
-              shouldCheckAdmin= {true}
-              element={< AdminProfile  AdminData={adminData} setAdminData={setAdminData} />} />,
+              shouldCheckAdmin={true}
+              element={< AdminProfile AdminData={adminData} setAdminData={setAdminData} />} />,
         },
         {
           path: "/dashboard",
@@ -181,7 +181,7 @@ function App() {
               isAdmin={isAdmin}
               shouldCheckAdmin={true}
               element={<Dashboard />}
-           />,
+            />,
         },
         {
           path: "/ProductDashboard",
@@ -213,8 +213,8 @@ function App() {
               element={<OrderDashBoard />}
             />,
         },
-       
-        
+
+
       ],
     },
   ]);

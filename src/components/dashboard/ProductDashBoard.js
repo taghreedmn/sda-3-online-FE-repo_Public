@@ -14,7 +14,7 @@ export default function ProductDashBoard() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const url = "http://localhost:5125/api/v1/VideoGamesInfo/Detailed?MinPrice=0&MaxPrice=1000&Limit=100&Offset=0";
+    const url = "https://fusiontech-q0v4.onrender.com/api/v1/VideoGamesInfo/Detailed?MinPrice=0&MaxPrice=1000&Limit=100&Offset=0";
 
     const [newProduct, setNewProduct] = useState({
         gameName: '',
@@ -52,19 +52,19 @@ export default function ProductDashBoard() {
 
     // Fetch options for dropdowns
     useEffect(() => {
-        axios.get("http://localhost:5125/api/v1/Publisher")
+        axios.get("https://fusiontech-q0v4.onrender.com/api/v1/Publisher")
             .then((response) => setPublishers(response.data))
             .catch((error) => console.error("Error fetching publishers", error));
 
-        axios.get("http://localhost:5125/api/v1/Categories")
+        axios.get("https://fusiontech-q0v4.onrender.com/api/v1/Categories")
             .then((response) => setCategories(response.data))
             .catch((error) => console.error("Error fetching categories", error));
 
-        axios.get("http://localhost:5125/api/v1/GameStudio")
+        axios.get("https://fusiontech-q0v4.onrender.com/api/v1/GameStudio")
             .then((response) => setStudios(response.data))
             .catch((error) => console.error("Error fetching studios", error));
 
-        axios.get("http://localhost:5125/api/v1/Console")
+        axios.get("https://fusiontech-q0v4.onrender.com/api/v1/Console")
             .then((response) => setConsoles(response.data))
             .catch((error) => console.error("Error fetching consoles", error));
     }, []);
@@ -112,7 +112,7 @@ export default function ProductDashBoard() {
         })
         try {
             const token = localStorage.getItem('token');
-            await axios.post('http://localhost:5125/api/v1/VideoGamesInfo', newProduct, {
+            await axios.post('https://fusiontech-q0v4.onrender.com/api/v1/VideoGamesInfo', newProduct, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -242,14 +242,14 @@ export default function ProductDashBoard() {
                             <MenuItem key={console.gameConsoleId} value={console.gameConsoleId}>{console.consoleName}</MenuItem>
                         ))}
                     </Select>
-                    
+
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={() => setOpenCreateDialog(false)}>Cancel</Button>
                     <Button onClick={handleCreateProduct} color="primary">Create</Button>
                 </DialogActions>
             </Dialog>
-            
+
         </div>
     );
 }
